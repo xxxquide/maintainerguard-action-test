@@ -1,0 +1,69 @@
+name: MaintainerGuard External Action Test
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  demo:
+    name: External Action Demo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run MaintainerGuard demo from Marketplace Action
+        uses: xxxquide/MaintainerGuard@v0.1.1
+        with:
+          mode: demo
+          scenario-or-sample-input-path: high-risk-auth
+          dry-run: "true"
+          post-comment: "false"
+          fail-on-risk: none
+
+  validate-config:
+    name: External Action Config Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate MaintainerGuard config
+        uses: xxxquide/MaintainerGuard@v0.1.1
+        with:
+          mode: validate-config
+          config-path: .maintainerguard.toml
+          dry-run: "true"
+          post-comment: "false"
+          fail-on-risk: none
+
+  analyze-pr:
+    name: External Action PR Analysis Dry Run
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Analyze PR with MaintainerGuard
+        uses: xxxquide/MaintainerGuard@v0.1.1
+        with:
+          mode: analyze-pr
+          config-path: .maintainerguard.toml
+          dry-run: "true"
+          post-comment: "false"
+          fail-on-risk: none

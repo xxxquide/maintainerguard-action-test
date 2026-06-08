@@ -1,0 +1,17 @@
+# MaintainerGuard external Action smoke-test config.
+[core]
+dry_run = true
+report_mode = "concise"
+output_format = "markdown"
+language = "en"
+log_level = "warning"
+
+[ai]
+enabled = false
+
+[github]
+post_comments = false
+update_previous_comment = true
+comment_on_drafts = false
+comment_on_bots = false
+
