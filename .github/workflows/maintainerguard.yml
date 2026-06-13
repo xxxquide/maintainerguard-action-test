@@ -21,7 +21,7 @@ jobs:
           python-version: "3.11"
 
       - name: Run MaintainerGuard demo from Marketplace Action
-        uses: xxxquide/MaintainerGuard@v0.1.4
+        uses: xxxquide/MaintainerGuard@v0.3.0
         with:
           mode: demo
           scenario-or-sample-input-path: high-risk-auth
@@ -40,7 +40,7 @@ jobs:
           python-version: "3.11"
 
       - name: Validate MaintainerGuard config
-        uses: xxxquide/MaintainerGuard@v0.1.4
+        uses: xxxquide/MaintainerGuard@v0.3.0
         with:
           mode: validate-config
           config-path: .maintainerguard.toml
@@ -60,7 +60,7 @@ jobs:
           python-version: "3.11"
 
       - name: Analyze PR with MaintainerGuard
-        uses: xxxquide/MaintainerGuard@v0.1.4
+        uses: xxxquide/MaintainerGuard@v0.3.0
         with:
           mode: analyze-pr
           config-path: .maintainerguard.toml
