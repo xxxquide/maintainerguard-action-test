@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - uses: xxxquide/MaintainerGuard@v0.3.0
+      - uses: xxxquide/MaintainerGuard@v0.3.1
         with:
           mode: analyze-pr
           dry-run: "true"
